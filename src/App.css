@@ -5,28 +5,34 @@
 }
 
 body {
-    background-color: #34495e;
-    color: #ffffff;
-    font-family: Arial, Helvetica, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 80vh;
-    margin: 0;
-    overflow: hidden;
+    background-color: black;
+    color: white;
+    font-family: 'Lato', sans-serif;  
+    margin-left: 10%;
 }
 
 h1 {
-  margin: 20px 0 0;
+    font-size: 3rem;
+  margin-top: 20px;
+  margin-left: 35%;
+  color: #64c1ff
+}
+p{
+    color: #64c1ff;
+    font-size: 1.2rem;
+    margin-left: 31%;
+    margin-top: 30px;
+    margin-bottom: 75px;
 }
 
+    
 
 
 /* GAME */
 .game-container {
-    padding: 20px 30px;
+    padding: 20px 5px;
     position: relative;
-    margin: auto;
+    margin-left: 28%;
     width: 450px;
     height: 350px;
 }
@@ -97,10 +103,10 @@ h1 {
 }
 
 .pop-up {
-    background-color: #2980b9;
+    background-color: #4b565e;
     border-radius: 5px;
     box-shadow: 0 15px 10px 3px rgba(0, 0, 0, 0.1);
-    padding: 10px 50px 30px 50px;
+    padding: 20px 50px 30px 50px;
     text-align: center;
 }
 
@@ -127,11 +133,12 @@ h1 {
 
 /* NOTIFICATION */
 .notification-container {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(132, 129, 129, 0.578);
     border-radius: 10px 10px 0 0;
     padding: 15px 20px;
     position: absolute;
     bottom: -50px;
+    right: 37.5%;
     transition: transform 0.3s ease-in-out;
 }
 .notification-container p {

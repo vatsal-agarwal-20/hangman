@@ -14,57 +14,45 @@ const words = ["application", "programming", "interface", "wizard"];
   
 
 function App() {
-  const [playable,setPlayable]=useState(true);
-  let [correctLetters,setCorrectLetters]=useState([]);
-  let [wrongLetters,setWrongLetters]=useState([]);
-  const [showNotification,setShowNotification]=useState(false);
+  const [playable, setPlayable] = useState(true);
+  let [correctLetters, setCorrectLetters] = useState([]);
+  let [wrongLetters, setWrongLetters] = useState([]);
+  const [showNotification, setShowNotification] = useState(false);
 
 
-  useEffect(()=>{
-    const handleKeyDown= event =>{
-      const {key,keyCode}=event;
-      
+  useEffect(() => {
+    const handleKeydown = event => {
+      const { key, keyCode } = event;
       if (playable && keyCode >= 65 && keyCode <= 90) {
-        // put letter into variable
         const letter = key.toLowerCase();
-        // check if letter is in selected word
         if (selectedWord.includes(letter)) {
-            // check if not already entered
-            if (!correctLetters.includes(letter)) {
-                // add letter into correct letters
-                setCorrectLetters(currentLetters => [...currentLetters,letter]);
-                // update interface
-                
-            } else {
-                show(setShowNotification);
-            }
+          if (!correctLetters.includes(letter)) {
+            setCorrectLetters(currentLetters => [...currentLetters, letter]);
+          } else {
+            show(setShowNotification);
+          }
         } else {
-            // check if not already entered
-            if (!wrongLetters.includes(letter)) {
-                // add letter into wrong letters
-                setWrongLetters(currentLetters => [...currentLetters,letter]);
-                
-            } else {
-              show(setShowNotification);
-            }
+          if (!wrongLetters.includes(letter)) {
+            setWrongLetters(currentLetters => [...currentLetters, letter]);
+          } else {
+            show(setShowNotification);
+          }
         }
+      }
     }
-    }
-    window.addEventListener("keydown", handleKeyDown);
-    
-    return () => window.removeEventListener('keydown',handleKeyDown);
-      
-  },[correctLetters, wrongLetters, playable, setCorrectLetters, setWrongLetters]);
+    window.addEventListener('keydown', handleKeydown);
+
+    return () => window.removeEventListener('keydown', handleKeydown);
+  }, [correctLetters, wrongLetters, playable]);
   
   function playAgain(){
   
     setPlayable(true);
 
-    //Empty arrays
-    setCorrectLetters=([]);
-    setWrongLetters=([]);
+    setCorrectLetters([]);
+    setWrongLetters([]);
 
-    const random=Math.floor(Math.random() * words.length);
+    const random = Math.floor(Math.random() * words.length);
     selectedWord=words[random];
   }
 
@@ -72,13 +60,12 @@ function App() {
     <>
       <Header />
       <div className="game-container">
-        <Figure wrongLetters={wrongLetters}/>
+        <Figure wrongLetters={wrongLetters} />
         <WrongLetters wrongLetters={wrongLetters} />
-        <Word  selectedWord={selectedWord} correctLetters={correctLetters}/>
+        <Word selectedWord={selectedWord} correctLetters={correctLetters} />
       </div>
-      <PopUp playable={playable} correctLetters={correctLetters} wrongLetters={wrongLetters}
-       selectedWord={selectedWord} setPlayable={setPlayable} playAgain={playAgain}/>
-      <Notification showNotification={showNotification}/>
+      <PopUp correctLetters={correctLetters} wrongLetters={wrongLetters} selectedWord={selectedWord} setPlayable={setPlayable} playAgain={playAgain} />
+      <Notification showNotification={showNotification} />
     </>
   );
 }
